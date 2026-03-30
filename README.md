@@ -24,7 +24,7 @@ This project contains an ArcGIS Maps SDK for JavaScript visualization demo with 
 
 ## Screenshot
 
-![Web map screenshot](./assets/webmap-screenshot.svg)
+![Web map screenshot](./assets/webmap-screenshot.png)
 
 ## Run Locally
 
