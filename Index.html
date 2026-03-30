@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>ArcGIS Web Map Visualization Demo</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/5.0/esri/themes/light/main.css" />
+    <link rel="stylesheet" href="./styles.css" />
+
+    <!-- Load the ArcGIS Maps SDK for JavaScript from CDN -->
+    <script type="module" src="https://js.arcgis.com/5.0/"></script>
+  </head>
+
+  <body>
+    <!-- Top-right control to switch between 2 demos on the same page -->
+    <div class="sample-switcher">
+      <button id="showElection" class="active" type="button">Election Map</button>
+      <button id="showScene" type="button">Custom Tile Scene</button>
+    </div>
+
+    <!-- 2D election gap visualization view -->
+    <section id="electionPane" class="pane active">
+      <calcite-shell id="appShell">
+        <arcgis-map id="electionMapView">
+          <div id="titleDiv" slot="top-left">Obama / McCain 2008 Election - voting districts gap</div>
+          <arcgis-expand slot="top-left" expand-icon="list-bullet">
+            <arcgis-legend legend-style="classic"></arcgis-legend>
+          </arcgis-expand>
+        </arcgis-map>
+        <div id="footer" slot="footer">
+          <calcite-block id="sliderValue-block" expanded label="current year">
+            <span id="sliderValue"></span>of the votes separate the two candidates
+          </calcite-block>
+          <calcite-block id="slider-block" label="slider block" expanded>
+            <calcite-slider id="gapSlider" min="0" max="100" step="0.25" value="50" label-ticks ticks="100">
+            </calcite-slider>
+          </calcite-block>
+          <calcite-block label="play button block" id="play-block" expanded>
+            <calcite-button id="playButton" appearance="transparent" icon-start="play"
+              >Play</calcite-button
+            >
+          </calcite-block>
+        </div>
+      </calcite-shell>
+
+      <div id="tooltipContent" class="tooltip-content" style="visibility: hidden">
+        <div id="chart" class="chart">
+          <div class="row democrat">
+            <div class="labels"><span>Obama:</span></div>
+            <div class="data"><div class="bar"></div></div>
+            <div class="value"><span></span></div>
+          </div>
+          <div class="row republican">
+            <div class="labels"><span>McCain:</span></div>
+            <div class="data"><div class="bar"></div></div>
+            <div class="value"><span></span></div>
+          </div>
+          <div class="row gap">
+            <div class="labels"><span>Gap:</span></div>
+            <div class="data">
+              <div class="bar"><div></div></div>
+            </div>
+            <div class="value"><span></span></div>
+          </div>
+        </div>
+        <div class="tooltip-text">Click to view precincts with similar gap</div>
+      </div>
+    </section>
+
+    <!-- 3D custom tile layer scene view -->
+    <section id="scenePane" class="pane">
+      <arcgis-scene id="tintSceneView" zoom="7" center="8.5, 45.5">
+        <arcgis-zoom slot="top-left"></arcgis-zoom>
+        <arcgis-navigation-toggle slot="top-left"></arcgis-navigation-toggle>
+        <arcgis-compass slot="top-left"></arcgis-compass>
+        <arcgis-layer-list slot="top-right"></arcgis-layer-list>
+        <arcgis-expand id="colorExpand" slot="top-right" label="Change tint color">
+          <calcite-color-picker
+            id="colorPicker"
+            channels-disabled
+            saved-disabled
+            value="#132178"></calcite-color-picker>
+        </arcgis-expand>
+      </arcgis-scene>
+    </section>
+
+    <!-- App logic is kept in a separate module for maintainability -->
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
