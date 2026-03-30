@@ -1,0 +1,217 @@
+﻿html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+/* Demo switcher UI (Election / Scene). */
+.sample-switcher {
+  position: fixed;
+  top: 65px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.sample-switcher button {
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #222222;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.sample-switcher button.active {
+  background: #2f7dc1;
+  color: #ffffff;
+  border-color: #2f7dc1;
+}
+
+.pane {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.pane.active {
+  display: block;
+}
+
+/* Footer controls for the election map slider and play button. */
+#electionPane calcite-shell,
+#scenePane arcgis-scene {
+  height: 100%;
+}
+
+#footer {
+  display: flex;
+  flex-direction: row;
+  --calcite-color-brand: #333333;
+  --calcite-color-brand-hover: #222222;
+}
+
+#sliderValue-block,
+#play-block {
+  flex: 1;
+  flex-grow: 1;
+}
+
+#slider-block {
+  flex: 5;
+  flex-grow: 10;
+  padding-left: 20px;
+}
+
+#sliderValue {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+}
+
+#playButton {
+  margin-top: 20px;
+  padding-left: 10px;
+  width: 110px;
+}
+
+#titleDiv {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2019rem;
+  padding: 10px;
+  background: white;
+}
+
+/* Hover tooltip and mini bar chart shown on precinct interaction. */
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  transition: opacity 200ms;
+}
+
+.tooltip > div {
+  margin: 0 auto;
+  padding: 12px;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transform: translate3d(-50%, -120%, 0);
+  width: 300px;
+  height: 185px;
+  background: white;
+  display: flex;
+}
+
+.tooltip-content {
+  flex: 1 1 100%;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.tooltip-text {
+  border-top: 1px solid lightgray;
+  font-size: 75%;
+  font-style: italic;
+  margin-top: 12px;
+  padding-top: 4px;
+}
+
+.chart {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.chart .row {
+  flex: 1 1 auto;
+  align-items: center;
+  display: flex;
+}
+
+.chart .row .labels {
+  flex: 0 0 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: right;
+}
+
+.chart .row .labels > span {
+  flex: 1 1 100%;
+  text-align: right;
+}
+
+.chart .row .value {
+  flex: 0 0 60px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: right;
+}
+
+.chart .row .value > span {
+  flex: 1 1 100%;
+  text-align: right;
+}
+
+.chart .row .data {
+  flex: 1 1 100%;
+  position: relative;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.row.gap {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid lightgray;
+}
+
+.bar {
+  text-align: right;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  transition: 300ms all;
+}
+
+.row.democrat .bar {
+  background-color: rgb(0, 92, 230);
+}
+
+.row.republican .bar {
+  background-color: rgb(255, 20, 20);
+}
+
+.row.gap .bar {
+  position: relative;
+  background: white
+    url("https://js.arcgis.com/5.0/esri/symbols/patterns/backward-diagonal.png") repeat;
+  border-radius: 0;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+}
+
+.row.gap .bar > div {
+  position: absolute;
+  z-index: -1;
+  top: -110px;
+  bottom: -18px;
+  left: -1px;
+  right: -1px;
+  border-left: 1px dashed gray;
+  border-right: 1px dashed gray;
+  background: #ececec;
+}
